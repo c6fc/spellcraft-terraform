@@ -1,0 +1,34 @@
+{
+  "name": "@c6fc/spellcraft-terraform",
+  "version": "1.0.0",
+  "main": "module.js",
+  "scripts": {
+    "test": "node utils/test.js",
+    "doc": "jsdoc -c utils/jsdoc.json --verbose"
+  },
+  "bin": {
+    "cli": "utils/cli-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c6fc/spellcraft-terraform.git"
+  },
+  "config": {
+    "spellcraft_module_default_name": "terraform"
+  },
+  "author": "Brad Woodward (brad@bradwoodward.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/c6fc/spellcraft-terraform/issues"
+  },
+  "homepage": "https://github.com/c6fc/spellcraft-terraform#readme",
+  "description": "A plugin to expose Hashicorp Terraform via @c6fc/spellcraft",
+  "devDependencies": {
+    "clean-jsdoc-theme": "^4.3.0",
+    "jsdoc": "^4.0.4"
+  },
+  "dependencies": {
+    "@c6fc/spellcraft": "^0.0.1",
+    "@c6fc/terraform": "^1.0.0",
+  }
+}
