@@ -1,6 +1,6 @@
 {
   "name": "@c6fc/spellcraft-terraform",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "module.js",
   "scripts": {
     "cli": "utils/cli-test.js",
@@ -27,6 +27,6 @@
   },
   "dependencies": {
     "@c6fc/spellcraft": "^0.0.4",
-    "@c6fc/terraform": "^1.0.3"
+    "@c6fc/terraform": "^1.0.4"
   }
 }

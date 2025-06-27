@@ -52,13 +52,18 @@ exports._spellcraft_metadata = {
 			await spellframe.write();
 
 			if (!argv['skip-init']) {
-				await terraform.exec("init");
+				await terraform.exec(["init"], {
+					cwd: spellframe.renderPath,
+					stdio: [process.stdin, process.stdout, process.stderr]
+				});
 			}
 
-			const args = (argv['auto-approve']) ? ['-y', spellframe.renderPath] : [spellframe.renderPath];
+			const args = (argv['auto-approve']) ? ['apply', '-auto-approve'] : ['apply'];
 
-			await terraform.exec("build", args);
-
+			await terraform.exec(args, {
+				cwd: spellframe.renderPath,
+				stdio: [process.stdin, process.stdout, process.stderr]
+			});
 		});
 
 		console.log(`[+] Imported SpellFrame CLI extensions for @c6fc/terraform`);
