@@ -1,6 +1,6 @@
 {
   "name": "@c6fc/spellcraft-terraform",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "module.js",
   "scripts": {
     "cli": "utils/cli-test.js",

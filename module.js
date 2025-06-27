@@ -55,7 +55,7 @@ exports._spellcraft_metadata = {
 				await terraform.exec("init");
 			}
 
-			const args = ($argv['auto-approve']) ? ['-y', spellframe.renderPath] : [spellframe.renderPath];
+			const args = (argv['auto-approve']) ? ['-y', spellframe.renderPath] : [spellframe.renderPath];
 
 			await terraform.exec("build", args);
 
