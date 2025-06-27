@@ -52,7 +52,7 @@ exports._spellcraft_metadata = {
 			await spellframe.write();
 
 			if (!argv['skip-init']) {
-				await terraform.exec("init", spellframe.renderPath);
+				await terraform.exec("init");
 			}
 
 			const args = ($argv['auto-approve']) ? ['-y', spellframe.renderPath] : [spellframe.renderPath];
