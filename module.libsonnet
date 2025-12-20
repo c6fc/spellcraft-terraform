@@ -1,1 +1,1 @@
-{ }
+std.native("@c6fc/spellcraft-terraform:terraform")()
