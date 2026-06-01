@@ -7,14 +7,29 @@ const path = require('path');
 const yargs = require('yargs');
 const { hideBin } = require('yargs/helpers');
 const { SpellFrame } = require('@c6fc/spellcraft');
-const { _spellcraft_metadata } = require('../module.js');
 
 const spellframe = new SpellFrame();
 
-spellframe.loadModuleByName("foo", ".."); // a name of '..' loads the current module.
+// 1. Resolve local package info to simulate a real plugin load
+const packageDir = path.resolve(__dirname, '..'); // Assuming script is in /utils
+const packageJsonPath = path.join(packageDir, 'package.json');
+
+if (!fs.existsSync(packageJsonPath)) {
+    throw new Error(`[!] Could not find package.json at ${packageJsonPath}`);
+}
+
+const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+const jsEntry = path.join(packageDir, pkg.main || 'index.js');
+
+console.log(`[*] Loading local plugin context: ${pkg.name}`);
+
+// 2. Load the plugin into SpellFrame
+// This registers native functions (namespaced) and populates cliExtensions 
+// automatically via the _spellcraft_metadata export in module.js
+spellframe.loadPlugin(pkg.name, jsEntry);
 
 // Raise an alert if there's a spellcraft_modules directory, since this isn't allowed for modules.
-if (fs.existsSync(path.resolve('..', 'spellcraft_modules'))) {
+if (fs.existsSync(path.resolve(packageDir, 'spellcraft_modules'))) {
 	throw new Error(`[!] This module has a spellcraft_modules directory. This isn't permitted. Instead, native `
 		+ `functions should be exposed through your modules.js file. Migrate your functions and remove the `
 		+ `spellcraft_modules directory before continuing`);

@@ -22,6 +22,8 @@ exports._spellcraft_metadata = {
 			await spellframe.render(argv.filename);
 			await spellframe.write();
 
+			await spellframe.emitAsync('@c6fc/spellcraft-terraform:pre-apply');
+
 			if (!argv['skip-init']) {
 				await terraform.exec(["init"], {
 					cwd: spellframe.renderPath,
@@ -35,9 +37,11 @@ exports._spellcraft_metadata = {
 				cwd: spellframe.renderPath,
 				stdio: [process.stdin, process.stdout, process.stderr]
 			});
+
+			await spellframe.emitAsync('@c6fc/spellcraft-terraform:post-apply');
 		});
 
-		console.log(`[+] Imported SpellFrame CLI extensions for @c6fc/terraform`);
+		console.log(`[+] Imported SpellFrame CLI extensions for @c6fc/spellcraft-terraform`);
 	},
 	init: async () => {
 		await terraform.isReady;

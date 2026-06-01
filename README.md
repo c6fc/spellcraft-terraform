@@ -24,3 +24,10 @@ Install the plugin as a dev dependency in your SpellCraft project:
 ```bash
 npm install --save @c6fc/spellcraft-terraform
 ```
+
+## Lifecycle Events
+
+This plugin emits namespaced lifecycle events on the `SpellFrame` instance when running the `terraform-apply` CLI extension:
+
+- **`@c6fc/spellcraft-terraform:pre-apply`**: Emitted before running `terraform init` and `terraform apply`. Useful for other plugins to configure prerequisites or enable required cloud services.
+- **`@c6fc/spellcraft-terraform:post-apply`**: Emitted after the `terraform apply` execution completes.
